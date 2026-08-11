@@ -80,7 +80,7 @@ export default function FlagshipMockup({ onSeeAll }: { onSeeAll: () => void }) {
       <button
         type="button"
         onClick={onSeeAll}
-        className="pill-3d flex h-11 items-center rounded-full px-7 text-[15px] font-semibold text-meadow-ink transition-transform hover:-translate-y-0.5"
+        className="wbtn h-11 px-7 text-[15px]"
       >
         See all works
       </button>

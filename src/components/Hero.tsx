@@ -36,11 +36,7 @@ export default function Hero({ onSeeAll }: { onSeeAll: () => void }) {
           <a href={CAL} target="_blank" rel="noopener" className="cta-btn h-11">
             Book a call
           </a>
-          <a
-            href="/Sidney-Anieze-CV.pdf"
-            download
-            className="inline-flex h-11 items-center gap-2 rounded-full border border-meadow-ink/15 bg-white/70 px-6 text-sm font-semibold text-meadow-ink backdrop-blur-sm transition-transform hover:-translate-y-px"
-          >
+          <a href="/Sidney-Anieze-CV.pdf" download className="wbtn h-11 px-6">
             Download CV
           </a>
         </motion.div>
