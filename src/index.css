@@ -32,6 +32,8 @@ body {
     inset 0 -3px 7px rgba(20, 20, 28, 0.05);
 }
 .cta-btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -51,12 +53,33 @@ body {
     0 5px 14px rgba(46, 125, 91, 0.32);
   transition: filter 0.2s, transform 0.2s;
 }
+/* sweeping sheen / light streak */
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 0;
+  height: 140%;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-220%) skewX(-20deg);
+  transition: transform 0.7s ease-in-out;
+  pointer-events: none;
+}
 .cta-btn:hover {
   filter: brightness(1.08);
   transform: translateY(-1px);
 }
+.cta-btn:hover::after {
+  transform: translateX(320%) skewX(-20deg);
+}
 .cta-btn:active {
   transform: scale(0.97);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn::after {
+    display: none;
+  }
 }
 
 /* ── Sky props ── */
