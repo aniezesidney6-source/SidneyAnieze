@@ -67,6 +67,12 @@ export default function CaseStudy({
             <span className="rounded-full border border-black/10 px-3 py-1">{c.platform}</span>
             <span className="text-meadow-deep">{c.hookStat}</span>
           </div>
+          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-meadow-muted">{c.overview}</p>
+          {c.liveUrl && (
+            <a href={c.liveUrl} target="_blank" rel="noopener" className="cta-btn mt-6 h-11">
+              Visit live site
+            </a>
+          )}
         </div>
 
         {/* cover */}

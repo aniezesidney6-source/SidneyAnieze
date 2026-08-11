@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { projects, type Project } from '@/data/projects'
+import { caseStudies } from '@/data/caseStudies'
 
 function Media({ p }: { p: Project }) {
   if (!p.cover) {
@@ -35,9 +36,11 @@ export default function WorksPage({ onBack, onOpenCase }: { onBack: () => void; 
 
         <div className="mt-10 grid grid-cols-2 gap-5 sm:gap-6">
           {projects.map((p) => {
-            const Wrapper = p.kind === 'site' ? 'a' : 'button'
-            const props =
-              p.kind === 'site'
+            const hasCase = !!caseStudies[p.id]
+            const Wrapper = hasCase ? 'button' : p.kind === 'site' ? 'a' : 'button'
+            const props = hasCase
+              ? { type: 'button' as const, onClick: () => onOpenCase(p.id) }
+              : p.kind === 'site'
                 ? { href: p.href, target: '_blank', rel: 'noopener' }
                 : { type: 'button' as const, onClick: () => onOpenCase(p.id) }
             return (
@@ -56,7 +59,7 @@ export default function WorksPage({ onBack, onOpenCase }: { onBack: () => void; 
                     <div className="font-semibold text-meadow-ink">{p.name}</div>
                     <div className="text-xs text-meadow-muted">{p.tag}</div>
                   </div>
-                  <span className="text-sm font-semibold text-meadow-deep">{p.kind === 'site' ? 'Visit' : 'View'}</span>
+                  <span className="text-sm font-semibold text-meadow-deep">{hasCase ? 'View' : 'Visit'}</span>
                 </div>
               </Wrapper>
             )

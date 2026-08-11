@@ -27,6 +27,10 @@ export default function About() {
               Currently <strong className="font-normal">open for select product and AI design work</strong> and
               collaborative projects. Let&rsquo;s build something worth remembering.
             </p>
+            <p>
+              Away from the screen I&rsquo;m usually mid chess game, on the controller, or being ignored by my cat.
+              I bring the same things to work and life: clarity, a little play, and doing it properly.
+            </p>
           </div>
           <div className="mt-8 flex gap-8">
             {stats.map(([n, l]) => (

@@ -24,7 +24,7 @@ export default function Hero({ onSeeAll }: { onSeeAll: () => void }) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8, ease: RISE }}
         >
-          Product and AI designer in Lagos, turning complex, intelligent systems into clear, human, shipped product.
+          I help founders and teams turn complex, AI-driven ideas into clear, human products, designed and shipped end to end.
         </motion.p>
 
         <motion.div
