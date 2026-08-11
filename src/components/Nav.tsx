@@ -116,7 +116,7 @@ export default function Nav() {
 
       {/* Mobile sidebar / dropdown */}
       <div
-        className={`fixed right-4 top-[76px] z-[60] w-[min(300px,calc(100vw-32px))] origin-top-right rounded-[26px] border border-black/5 bg-white p-4 shadow-[0_24px_70px_rgba(0,0,0,0.25)] transition-all duration-300 md:hidden ${
+        className={`fixed right-4 top-[76px] z-[60] w-[min(300px,calc(100vw-32px))] origin-top-right rounded-[26px] border border-white/50 bg-white/60 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl transition-all duration-300 md:hidden ${
           menu ? 'pointer-events-auto scale-100 opacity-100' : 'pointer-events-none -translate-y-2 scale-95 opacity-0'
         }`}
       >
