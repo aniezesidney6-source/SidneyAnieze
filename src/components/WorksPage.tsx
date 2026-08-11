@@ -25,8 +25,8 @@ export default function WorksPage({ onBack, onOpenCase }: { onBack: () => void; 
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="mx-auto w-full max-w-[1160px] px-5 py-8 sm:px-6 sm:py-10">
-        <button onClick={onBack} className="wbtn mb-8 h-11 pl-2 pr-5">
-          <span className="grid h-7 w-7 place-items-center rounded-full bg-meadow-ink text-white">
+        <button onClick={onBack} className="wbtn mb-8 h-12 gap-2.5 pl-2 pr-7">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-meadow-ink text-white">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
               <path d="M19 12H5M11 6l-6 6 6 6" />
             </svg>

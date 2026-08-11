@@ -48,8 +48,8 @@ export default function CaseStudy({
       {/* top bar */}
       <div className="sticky top-0 z-30 border-b border-black/5 bg-meadow-bg/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1160px] items-center justify-between px-6 py-4">
-          <button onClick={onBack} className="wbtn h-10 pl-2 pr-5">
-            <span className="grid h-6 w-6 place-items-center rounded-full bg-meadow-ink text-white">
+          <button onClick={onBack} className="wbtn h-11 gap-2.5 pl-2 pr-6">
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-meadow-ink text-white">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
                 <path d="M19 12H5M11 6l-6 6 6 6" />
               </svg>
