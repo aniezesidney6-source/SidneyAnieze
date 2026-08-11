@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import SkyProps from './components/SkyProps'
 import Benefits from './components/Benefits'
 import Process from './components/Process'
+import TechStack from './components/TechStack'
 import About from './components/About'
 import Testimonials from './components/Testimonials'
 import FAQ from './components/FAQ'
@@ -53,6 +54,7 @@ export default function App() {
             <Hero onSeeAll={() => setView('works')} />
             <Benefits />
             <Process />
+            <TechStack />
             <About />
             <Testimonials />
             <FAQ />
