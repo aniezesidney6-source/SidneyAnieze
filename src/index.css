@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  font-family: 'General Sans', system-ui, sans-serif;
+  background: #c7e5d2;
+  color: #15281c;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: #2e7d5b;
+  color: #fff;
+}
+
+/* ── Shared nav pill + CTA (ported from the HTML: embossed inner shadows) ── */
+.pill-3d {
+  background: #fff;
+  border: 1px solid rgba(20, 20, 28, 0.08);
+  box-shadow: 0 6px 24px rgba(20, 20, 28, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -3px 7px rgba(20, 20, 28, 0.05);
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #2e7d5b;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  padding: 11px 20px;
+  border-radius: 100px;
+  white-space: nowrap;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.28), inset 0 -6px 9px rgba(0, 0, 0, 0.22),
+    0 5px 14px rgba(46, 125, 91, 0.32);
+  transition: filter 0.2s, transform 0.2s;
+}
+.cta-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.cta-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Sky props ── */
+@keyframes drift {
+  from {
+    transform: translateX(-18px);
+  }
+  to {
+    transform: translateX(18px);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-16px) rotate(var(--rot, 0deg));
+  }
+}
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.hero-float {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 55s linear infinite;
+}
+.marquee-mask:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prop,
+  .marquee-track,
+  .hero-float {
+    animation: none !important;
+  }
+}
