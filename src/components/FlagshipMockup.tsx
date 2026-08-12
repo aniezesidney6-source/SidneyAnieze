@@ -1,12 +1,42 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 
 const SITE = 'https://luxuriousluchihairs.com/'
-const SHOT = 'https://image.thum.io/get/width/1600/crop/914/noanimate/https://luxuriousluchihairs.com/'
+// full-page capture (entire page height) so it can scroll inside the frame
+const SHOT = 'https://image.thum.io/get/fullpage/width/1200/noanimate/https://luxuriousluchihairs.com/'
 
 const ICO = 'text-[#8a8a8a]'
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
 
 export default function FlagshipMockup({ onSeeAll }: { onSeeAll: () => void }) {
+  const viewportRef = useRef<HTMLDivElement>(null)
+  const imgRef = useRef<HTMLImageElement>(null)
+  const [travel, setTravel] = useState(0)
+
+  // drive the inner scroll from page scroll: starts at the site's top, then pans
+  // down at ~0.6x page speed (gentle parallax) as the visitor scrolls the portfolio
+  const { scrollY } = useScroll()
+  const yRaw = useTransform(scrollY, [0, Math.max(1, travel * 1.7)], [0, -travel])
+  const y = useSpring(yRaw, { stiffness: 120, damping: 30, mass: 0.4 })
+
+  // how far the capture can pan = its rendered height minus the frame's visible height
+  const measure = () => {
+    const vp = viewportRef.current
+    const img = imgRef.current
+    if (!vp || !img || !img.clientHeight) return
+    // cap the pan so the site scrolls at a comfortable pace (~4 screens) instead of racing
+    const full = img.clientHeight - vp.clientHeight
+    const cap = vp.clientHeight * 4
+    setTravel(Math.max(0, Math.min(full, cap)))
+  }
+
+  useEffect(() => {
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <section className="flex flex-col items-center gap-12 px-5 pb-20" aria-label="Selected work">
       <motion.a
@@ -66,22 +96,21 @@ export default function FlagshipMockup({ onSeeAll }: { onSeeAll: () => void }) {
           </div>
         </div>
 
-        {/* website preview */}
-        <div className="aspect-[1280/731] w-full overflow-hidden bg-[#e9efe9]">
-          <img
+        {/* website preview — full-page capture pans as the visitor scrolls */}
+        <div ref={viewportRef} className="aspect-[1280/731] w-full overflow-hidden bg-[#e9efe9]">
+          <motion.img
+            ref={imgRef}
             src={SHOT}
             alt="Luxurious Luchi Hairs, a live e-commerce build"
-            className="h-full w-full object-cover object-top"
+            style={{ y }}
+            onLoad={measure}
+            className="block w-full will-change-transform"
             onError={(e) => (e.currentTarget.style.opacity = '0')}
           />
         </div>
       </motion.a>
 
-      <button
-        type="button"
-        onClick={onSeeAll}
-        className="wbtn h-11 px-7 text-[15px]"
-      >
+      <button type="button" onClick={onSeeAll} className="wbtn h-11 px-7 text-[15px]">
         See all works
       </button>
     </section>
