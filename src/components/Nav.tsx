@@ -91,51 +91,67 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile: compact pill + hamburger */}
-      <div className="pill-3d fixed left-1/2 top-4 z-50 flex w-[min(94%,440px)] -translate-x-1/2 items-center justify-between rounded-full p-[7px] pl-3 md:hidden">
-        <div className="flex items-center gap-2.5">
-          <Logo size={36} />
-          <span className="text-[15px] font-semibold text-meadow-ink">Sidney Anieze</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <a href={CAL} target="_blank" rel="noopener" className="cta-btn !px-4 !py-2 !text-[13px]">
-            Book a call
-          </a>
-          <button
-            type="button"
-            aria-label="Menu"
-            aria-expanded={menu}
-            onClick={() => setMenu((m) => !m)}
-            className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-meadow-ink"
-          >
-            <span className={`absolute h-0.5 w-4 rounded bg-meadow-bg transition-transform duration-300 ${menu ? 'rotate-45' : '-translate-y-1'}`} />
-            <span className={`absolute h-0.5 w-4 rounded bg-meadow-bg transition-transform duration-300 ${menu ? '-rotate-45' : 'translate-y-1'}`} />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile sidebar / dropdown */}
-      <div
-        className={`fixed right-4 top-[76px] z-[60] w-[min(300px,calc(100vw-32px))] origin-top-right rounded-[26px] border border-white/50 bg-white/60 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-2xl transition-all duration-300 md:hidden ${
-          menu ? 'pointer-events-auto scale-100 opacity-100' : 'pointer-events-none -translate-y-2 scale-95 opacity-0'
-        }`}
-      >
-        <div className="flex flex-col gap-1">
-          {[['Home', '#home'], ...LINKS].map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setMenu(false)}
-              className="rounded-2xl px-4 py-3 text-center text-base font-semibold text-meadow-ink transition-colors hover:bg-meadow-accent/10 hover:text-meadow-deep"
-            >
-              {label}
+      {/* Mobile: menu slides out of the same white frame */}
+      <div className="fixed left-1/2 top-4 z-50 w-[min(94%,440px)] -translate-x-1/2 md:hidden">
+        <div className="overflow-hidden rounded-[32px] bg-white shadow-[0_16px_50px_rgba(16,24,16,0.16)]">
+          {/* navbar row — always visible */}
+          <div className="flex h-[62px] items-center gap-2.5 pl-3 pr-[9px]">
+            <Logo size={38} />
+            <span className="flex-1 text-[15px] font-semibold text-meadow-ink">Sidney Anieze</span>
+            <a href={CAL} target="_blank" rel="noopener" className="cta-btn !px-4 !py-2 !text-[13px]">
+              Book a call
             </a>
-          ))}
-        </div>
-        <div className="mt-3 flex items-center justify-center gap-3 border-t border-black/10 pt-3 text-xs text-meadow-muted">
-          <a href={`mailto:${EMAIL}`} className="hover:text-meadow-deep">Email</a>
-          <a href="https://wa.me/2348137875279" target="_blank" rel="noopener" className="hover:text-meadow-deep">WhatsApp</a>
-          <a href="https://www.behance.net/sidneyanieze" target="_blank" rel="noopener" className="hover:text-meadow-deep">Behance</a>
+            <button
+              type="button"
+              aria-label={menu ? 'Close menu' : 'Open menu'}
+              aria-expanded={menu}
+              onClick={() => setMenu((m) => !m)}
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-meadow-ink text-meadow-bg"
+            >
+              {menu ? (
+                <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* panel — grid-rows 0fr→1fr animates to the exact content height, clipped by the frame */}
+          <div
+            className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              menu ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+            }`}
+          >
+            <div className="overflow-hidden">
+              <div
+                className={`px-6 pb-6 pt-1 transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  menu ? 'opacity-100' : 'pointer-events-none opacity-0'
+                }`}
+              >
+                <nav aria-label="Mobile" className="flex flex-col text-center">
+                  {[['Home', '#home'], ...LINKS].map(([label, href]) => (
+                    <a
+                      key={href}
+                      href={href}
+                      onClick={() => setMenu(false)}
+                      className="py-3 text-[17px] font-medium text-meadow-ink transition-colors hover:text-meadow-deep"
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </nav>
+                <div className="mt-2 flex justify-center gap-6 border-t border-black/10 pt-4 text-[13px] text-meadow-muted">
+                  <a href={`mailto:${EMAIL}`} className="transition-colors hover:text-meadow-deep">Email</a>
+                  <a href="https://wa.me/2348137875279" target="_blank" rel="noopener" className="transition-colors hover:text-meadow-deep">WhatsApp</a>
+                  <a href="https://www.behance.net/sidneyanieze" target="_blank" rel="noopener" className="transition-colors hover:text-meadow-deep">Behance</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

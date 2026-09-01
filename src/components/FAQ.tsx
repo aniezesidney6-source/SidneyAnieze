@@ -50,10 +50,11 @@ export default function FAQ() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      className="overflow-hidden"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ type: 'spring', stiffness: 300, damping: 22, mass: 0.9 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], opacity: { duration: 0.35 } }}
                     >
                       <p className="px-5 pb-5 text-[15px] leading-relaxed text-meadow-muted">{a}</p>
                     </motion.div>

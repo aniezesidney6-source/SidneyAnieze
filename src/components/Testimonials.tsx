@@ -18,7 +18,7 @@ function Star() {
 function Card({ r }: { r: (typeof reviews)[number] }) {
   const [av, name, role, body] = r
   return (
-    <div className="flex w-[clamp(280px,32vw,380px)] shrink-0 flex-col gap-4 rounded-3xl border border-black/10 bg-white p-7">
+    <div className="mr-5 flex w-[clamp(280px,32vw,380px)] shrink-0 flex-col gap-4 rounded-3xl border border-black/10 bg-white p-7">
       <div className="flex gap-1 text-meadow-deep">{Array.from({ length: 5 }).map((_, i) => <Star key={i} />)}</div>
       <p className="text-[15px] leading-relaxed text-meadow-ink">{body}</p>
       <div className="mt-auto flex items-center gap-3">
@@ -42,7 +42,7 @@ export default function Testimonials() {
         </h2>
       </div>
       <div className="marquee-mask relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
-        <div className="marquee-track flex w-max gap-5 px-2.5">
+        <div className="marquee-track flex w-max">
           {[...reviews, ...reviews].map((r, i) => (
             <Card key={i} r={r} />
           ))}
