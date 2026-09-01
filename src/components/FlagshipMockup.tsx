@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 
-const SITE = 'https://luxuriousluchihairs.com/'
+const SITE = 'https://calora-green.vercel.app/'
+const HOST = 'calora-green.vercel.app'
 // full-page capture (entire page height) so it can scroll inside the frame
-const SHOT = 'https://image.thum.io/get/fullpage/width/1200/noanimate/https://luxuriousluchihairs.com/'
+const SHOT = 'https://image.thum.io/get/fullpage/width/1200/noanimate/https://calora-green.vercel.app/'
 
 const ICO = 'text-[#8a8a8a]'
 const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
@@ -43,7 +44,7 @@ export default function FlagshipMockup({ onSeeAll }: { onSeeAll: () => void }) {
         href={SITE}
         target="_blank"
         rel="noopener"
-        aria-label="Visit Luxurious Luchi Hairs"
+        aria-label="Visit Calora"
         className="relative block w-full max-w-[1160px] overflow-hidden rounded-[10px] bg-white shadow-[0_0_1px_rgba(0,0,0,0.7),0_10px_50px_rgba(0,0,0,0.2)]"
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
@@ -77,7 +78,7 @@ export default function FlagshipMockup({ onSeeAll }: { onSeeAll: () => void }) {
             <svg width="11" height="13" viewBox="0 0 12 14" fill="#9e9e9e" aria-hidden>
               <path d="M3 6V4a3 3 0 1 1 6 0v2h.5A1.5 1.5 0 0 1 11 7.5v4A1.5 1.5 0 0 1 9.5 13h-7A1.5 1.5 0 0 1 1 11.5v-4A1.5 1.5 0 0 1 2.5 6H3zm1.5 0h3V4a1.5 1.5 0 0 0-3 0v2z" />
             </svg>
-            <span className="text-[13px] leading-none text-[#4c4c4c]">luxuriousluchihairs.com</span>
+            <span className="text-[13px] leading-none text-[#4c4c4c]">{HOST}</span>
           </div>
 
           {/* right toolbar group */}
@@ -101,7 +102,7 @@ export default function FlagshipMockup({ onSeeAll }: { onSeeAll: () => void }) {
           <motion.img
             ref={imgRef}
             src={SHOT}
-            alt="Luxurious Luchi Hairs, a live e-commerce build"
+            alt="Calora, a live scheduling SaaS build"
             style={{ y }}
             onLoad={measure}
             className="block w-full will-change-transform"

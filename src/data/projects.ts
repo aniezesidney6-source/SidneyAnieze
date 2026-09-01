@@ -16,6 +16,15 @@ const thumb = (url: string) =>
 /** Order is the fan order, left to right. Apps open a case-study modal, sites open external. */
 export const projects: Project[] = [
   {
+    id: 'calora',
+    name: 'Calora',
+    tag: 'Scheduling SaaS',
+    kind: 'site',
+    href: 'https://calora-green.vercel.app/',
+    cover: thumb('https://calora-green.vercel.app/'),
+    badge: 'New',
+  },
+  {
     id: 'luchi',
     name: 'Luxurious Luchi Hairs',
     tag: 'E-commerce',
